@@ -1,5 +1,7 @@
 package level3;
 
+import java.util.Arrays;
+
 /**
  * 회사원인 수민이는 많은 일이 쌓여 있습니다.
  * 수민이는 야근을 최소화하기 위해 남은 일의 작업량을 숫자로 메기고, 일에 대한 야근 지수를 줄이기로 결정했습니다.
@@ -10,11 +12,22 @@ package level3;
  */
 public class NoOvertime {
     public int noOvertime(int no, int[] works) {
-        int result = 0;
         // 야근 지수를 최소화 하였을 때의 야근 지수는 몇일까요?
+        for(int i=0; i<no; i++){
+            int maxIdx = 0;
+            for(int j=0; j<works.length; j++){
+                if(works[j] > works[maxIdx]){
+                    maxIdx = j;
+                }
+            }
+            works[maxIdx]--;
+        }
 
-        return result;
+        return Arrays.stream(works)
+                .map(i -> i*i)
+                .sum();
     }
+
     public static void main(String[] args) {
         NoOvertime c = new NoOvertime();
         int []test = {4,3,3};
