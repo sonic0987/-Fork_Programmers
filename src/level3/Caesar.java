@@ -7,15 +7,26 @@ package level3;
  * “a B z”,4를 입력받았다면 “e F d”를 리턴합니다.
  */
 public class Caesar {
-    String caesar(String s, int n) {
-        String result = "";
-        // 함수를 완성하세요.
+    String caesar(String str, int n) {
+        char[] result = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
 
-        return result;
+            n %= 26;
+            if(c >= 'a' && c  <= 'z'){
+                result[i] = (char)('a' + (c - 'a' + n)%26);
+            } else if(c >= 'A' && c  <= 'Z'){
+                result[i] = (char)('A' + (c - 'A' + n)%26);
+            } else{
+                result[i] = c;
+            }
+        }
+
+        return String.valueOf(result);
     }
 
     public static void main(String[] args) {
         Caesar c = new Caesar();
-        System.out.println("s는 'a B z', n은 4인 경우: " + c.caesar("a B z", 4));
+        System.out.println("s는 'a B z', n은 4인 경우: " + c.caesar("gflkxu xPaOHefmn QVLOyJEHY dYJ vYZhhJzc cKwCljuJoZ", 45));
     }
 }
